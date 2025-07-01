@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía VMA Una Página - EPS Moyobamba</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-blue: #1e40af;
+            --bright-blue: #3b82f6;
+            --electric-blue: #06b6d4;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --success-green: #10b981;
+            --purple-accent: #8b5cf6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            print-color-adjust: exact !important;
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+            color: var(--text-dark);
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .page-container {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            padding: 0;
+        }
+
+        /* Header - Ultra Compact */
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--bright-blue) 50%, var(--electric-blue) 100%);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        /* Alert Banner - Compact */
+        .alert-banner {
+            background: linear-gradient(135deg, var(--warning-orange) 0%, #f97316 100%);
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .alert-banner::before {
+            content: '⚠️';
+            margin-right: 8px;
+        }
+
+        /* Main Content - Tight Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 0;
+            height: 100%;
+            padding: 0;
+        }
+
+        .section {
+            padding: 16px;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .section:nth-child(2) { border-right: none; }
+        .section:nth-child(3) { border-bottom: none; }
+        .section:nth-child(4) { border-right: none; border-bottom: none; }
+
+        .section-what { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+        .section-why { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+        .section-calc { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+        .section-example { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); }
+
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--bright-blue), var(--electric-blue));
+            border-radius: 2px;
+        }
+
+        .section p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Compact Icon List */
+        .icon-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .icon-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .icon.blue { background: linear-gradient(135deg, var(--bright-blue), var(--electric-blue)); }
+        .icon.green { background: linear-gradient(135deg, var(--success-green), #059669); }
+        .icon.orange { background: linear-gradient(135deg, var(--warning-orange), #f97316); }
+        .icon.purple { background: linear-gradient(135deg, var(--purple-accent), #7c3aed); }
+
+        .icon-content strong {
+            display: block;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.8rem;
+            line-height: 1.2;
+        }
+
+        .icon-content {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.75rem;
+            line-height: 1.2;
+        }
+
+        /* Formula Section */
+        .formula-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #cffafe 100%);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border: 2px solid var(--electric-blue);
+        }
+
+        .formula-box code {
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            display: block;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .note {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid var(--warning-orange);
+            margin-top: 8px;
+            font-size: 0.7rem;
+            color: var(--text-dark);
+        }
+
+        .note strong {
+            color: var(--warning-orange);
+            font-weight: 800;
+        }
+
+        /* Example Calculation */
+        .calc-steps {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        .calc-steps li {
+            background: var(--bg-light);
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            border-left: 3px solid var(--bright-blue);
+            font-size: 0.75rem;
+            position: relative;
+        }
+
+        .step-num {
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--bright-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.6rem;
+        }
+
+        .step-label {
+            font-weight: 700;
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 2px;
+            font-size: 0.75rem;
+        }
+
+        .value {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        .vma-limit { background: var(--success-green); color: white; }
+        .measured-value { background: var(--danger-red); color: white; }
+        .calculation-result { background: var(--purple-accent); color: white; }
+
+        /* Final Result - Compact */
+        .final-result {
+            background: linear-gradient(135deg, var(--danger-red) 0%, #dc2626 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.8rem;
+        }
+
+        .final-amount {
+            font-size: 1.5rem;
+            font-weight: 900;
+            display: block;
+            margin: 4px 0;
+        }
+
+        /* Footer - Ultra Compact */
+        .footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #374151 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.7rem;
+        }
+
+        .footer strong {
+            color: var(--electric-blue);
+            font-weight: 800;
+        }
+
+        .footer p {
+            margin-bottom: 4px;
+            opacity: 0.9;
+        }
+
+        /* Print Styles - Single Page Force */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.3cm;
+            }
+            
+            html, body {
+                height: 100%;
+                overflow: hidden;
+            }
+            
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-size: 10px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .page-container {
+                width: 100% !important;
+                height: 100vh !important;
+                max-height: 297mm !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+                page-break-before: avoid !important;
+                overflow: hidden !important;
+            }
+            
+            .header {
+                padding: 8px 15px !important;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem !important;
+                margin-bottom: 2px !important;
+            }
+            
+            .header .subtitle {
+                font-size: 0.8rem !important;
+            }
+            
+            .alert-banner {
+                padding: 6px 15px !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .section {
+                padding: 10px !important;
+            }
+            
+            .section h2 {
+                font-size: 1rem !important;
+                margin-bottom: 6px !important;
+            }
+            
+            .section p {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px !important;
+            }
+            
+            .icon-list li {
+                padding: 4px !important;
+                margin-bottom: 4px !important;
+                font-size: 0.65rem !important;
+            }
+            
+            .icon {
+                width: 18px !important;
+                height: 18px !important;
+                font-size: 0.7rem !important;
+            }
+            
+            .icon-content strong {
+                font-size: 0.65rem !important;
+            }
+            
+            .icon-content {
+                font-size: 0.6rem !important;
+            }
+            
+            .formula-box {
+                padding: 8px !important;
+                margin: 4px 0 !important;
+            }
+            
+            .formula-box code {
+                font-size: 0.65rem !important;
+            }
+            
+            .note {
+                padding: 6px !important;
+                margin-top: 4px !important;
+                font-size: 0.55rem !important;
+            }
+            
+            .calc-steps li {
+                padding: 6px 8px !important;
+                margin-bottom: 4px !important;
+                font-size: 0.6rem !important;
+            }
+            
+            .step-num {
+                width: 14px !important;
+                height: 14px !important;
+                font-size: 0.5rem !important;
+            }
+            
+            .step-label {
+                font-size: 0.6rem !important;
+                margin-bottom: 1px !important;
+            }
+            
+            .value {
+                padding: 2px 4px !important;
+                font-size: 0.65rem !important;
+            }
+            
+            .final-result {
+                padding: 8px !important;
+                margin-top: 6px !important;
+                font-size: 0.65rem !important;
+            }
+            
+            .final-amount {
+                font-size: 1.2rem !important;
+                margin: 2px 0 !important;
+            }
+            
+            .footer {
+                padding: 8px 15px !important;
+                font-size: 0.55rem !important;
+            }
+            
+            .footer p {
+                margin-bottom: 2px !important;
+            }
+            
+            /* Force single page */
+            * {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body { padding: 5px; }
+            .page-container { width: 100%; height: auto; border-radius: 8px; }
+            .main-grid { grid-template-columns: 1fr; }
+            .section { border-right: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏭 Guía VMA para Empresas</h1>
+            <p class="subtitle">Todo lo que necesitas saber sobre descargas industriales</p>
+        </header>
+
+        <!-- Alert Banner -->
+        <div class="alert-banner">
+            ATENCIÓN: Información esencial para usuarios no domésticos
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            <!-- Section 1: What are VMA -->
+            <section class="section section-what">
+                <h2>¿Qué son los VMA?</h2>
+                <p>Los <strong>Valores Máximos Admisibles</strong> son los límites de contaminantes que tu empresa puede descargar legalmente al sistema de alcantarillado.</p>
+                
+                <ul class="icon-list">
+                    <li>
+                        <div class="icon blue">🧪</div>
+                        <div class="icon-content">
+                            <strong>Materia Orgánica (DBO₅, DQO)</strong>
+                            Residuos orgánicos de alimentos y procesos productivos
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon orange">💧</div>
+                        <div class="icon-content">
+                            <strong>Sólidos Suspendidos (S.S.T.)</strong>
+                            Partículas que enturbian el agua y obstruyen tuberías
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon purple">🛢️</div>
+                        <div class="icon-content">
+                            <strong>Aceites y Grasas (A y G)</strong>
+                            Principal causa de bloqueos en la red de alcantarillado
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon green">⚗️</div>
+                        <div class="icon-content">
+                            <strong>Metales y Químicos</strong>
+                            Sustancias tóxicas de procesos industriales
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 2: Why Comply -->
+            <section class="section section-why">
+                <h2>¿Por qué Cumplir?</h2>
+                <p>Cumplir con los VMA no es solo una obligación legal, es una inversión inteligente para tu negocio y nuestra comunidad.</p>
+                
+                <ul class="icon-list">
+                    <li>
+                        <div class="icon green">💰</div>
+                        <div class="icon-content">
+                            <strong>Ahorra Dinero</strong>
+                            Evita multas y pagos adicionales por excesos de contaminación
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon blue">🛡️</div>
+                        <div class="icon-content">
+                            <strong>Protege la Infraestructura</strong>
+                            Previene daños costosos en la red pública de alcantarillado
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon green">🌱</div>
+                        <div class="icon-content">
+                            <strong>Cuida el Ambiente</strong>
+                            Permite el tratamiento adecuado de aguas residuales
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon purple">🤝</div>
+                        <div class="icon-content">
+                            <strong>Mejora tu Imagen</strong>
+                            Demuestra responsabilidad empresarial y social
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 3: Formula -->
+            <section class="section section-calc">
+                <h2>🧮 Fórmula de Cálculo</h2>
+                <p>Cuando tu descarga supera los límites VMA, se calcula la "carga contaminante excedente" que debes pagar.</p>
+                
+                <div class="formula-box">
+                    <code>
+                        <strong>Carga Excedente (kg)</strong><br>
+                        = (Conc. Medida - Límite VMA)<br>
+                        × Volumen (m³) ÷ 1000
+                    </code>
+                </div>
+                
+                <div class="note">
+                    <strong>¿Por qué ÷ 1000?</strong><br>
+                    Convierte mg/L y m³ a kilogramos (kg) para calcular el costo de la penalización.
+                </div>
+            </section>
+
+            <!-- Section 4: Example -->
+            <section class="section section-example">
+                <h2>🍽️ Ejemplo: Restaurante</h2>
+                <p>Un restaurante descarga <strong>100 m³</strong> mensuales. Tarifa hipotética: <strong>S/ 3.15 por kg</strong> de exceso.</p>
+                
+                <ul class="calc-steps">
+                    <li>
+                        <div class="step-num">1</div>
+                        <span class="step-label">Límite VMA para S.S.T.:</span>
+                        <span class="value vma-limit">500 mg/L</span>
+                    </li>
+                    <li>
+                        <div class="step-num">2</div>
+                        <span class="step-label">Concentración medida:</span>
+                        <span class="value measured-value">850 mg/L</span>
+                    </li>
+                    <li>
+                        <div class="step-num">3</div>
+                        <span class="step-label">Carga excedente:</span>
+                        <span class="value calculation-result">35 kg</span>
+                        <div style="font-size: 0.65rem; margin-top: 2px; color: var(--text-light);">
+                            (850 - 500) × 100 ÷ 1000 = 35 kg
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="final-result">
+                    <strong>💸 CARGO ADICIONAL MENSUAL</strong>
+                    <span class="final-amount">S/ 110.25</span>
+                    <div>(35 kg × S/ 3.15/kg)</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><strong>🚀 ¡Toma Acción Ahora!</strong> Implementa sistemas de pre-tratamiento como trampas de grasa, sedimentadores y filtros para cumplir con la normativa VMA.</p>
+            <p>Evita costos innecesarios y contribuye a un Moyobamba más sostenible. | <em>Fuente: D.S. N°010-2019-VIVIENDA</em></p>
+            <p><strong>EPS MOYOBAMBA S.A.</strong> - Juntos por un servicio y ambiente sostenible 🌍</p>
+        </footer>
+    </div>
+</body>
+</html>
